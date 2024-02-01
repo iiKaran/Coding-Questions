@@ -1,23 +1,19 @@
 class Solution {
+
 public:
     int hIndex(vector<int>& cit) {
-        sort(cit.begin(), cit.end());
-        int h = cit.size();
-        while (h >= 0) {
-            int cnt = 0;
-            for (int i = cit.size()-1; i >=0; i--) {
-                if (cit[i] >= h) {
-                    cnt++;
-                }
-                else
-                break;
-                
-            }
-            if (cnt >= h)
-                return h;
+         
+         int n = cit.size(); 
+         sort(cit.begin(), cit.end());  
+         int ans = n ; 
+         for( int i=0; i < n ; i++)
+         {
+             if(cit[i]>= ans)
+             break ; 
 
-                h--;
-        }
-        return 0;
+             ans--; 
+         }
+         return ans;
+        
     }
 };
