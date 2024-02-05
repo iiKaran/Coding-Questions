@@ -13,8 +13,6 @@ public:
         for (int i = n - 1; i >= 0; i--) {
             rmax[i] = maxi;
             maxi = max(maxi, bar[i]);
-        }
-        for (int i = 0; i < n; i++) {
             int lspace = lmax[i];
             int rspace = rmax[i];
             int space = min(lspace, rspace);
@@ -22,6 +20,7 @@ public:
                 water += (space - bar[i]);
             }
         }
+      
         return water;
     }
 };
