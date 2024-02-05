@@ -1,25 +1,19 @@
 class Solution {
 public:
-    int trap(vector<int>& bar) {
-        int n = bar.size();
-        vector<int> lmax(n, 0); 
-        int maxi, water;
-        maxi = water = 0;
-        for (int i = 0; i < n; i++) {
-            lmax[i] = maxi;
-            maxi = max(maxi, bar[i]);
+    int trap(vector<int>& height) {
+        int n = height.size(), left=1, lmax=height[0], rmax=height[n-1],right=n-2,water=0; 
+
+        while(left<=right)
+        {
+             if(height[left]>=lmax)
+             lmax=height[left++];
+             else if(height[right]>=rmax)
+             rmax=height[right--]; 
+             else if (lmax <= rmax)
+             water+= lmax-height[left++]; 
+             else if(rmax<=lmax)
+             water+= rmax-height[right--];
         }
-        maxi = 0;
-        for (int i = n - 1; i >= 0; i--) {
-            int lspace = lmax[i];
-            int rspace = maxi;
-            maxi = max(maxi, bar[i]);
-            int space = min(lspace, rspace);
-            if (space - bar[i] > 0) {
-                water += (space - bar[i]);
-            }
-        }
-      
-        return water;
+        return water ; 
     }
 };
