@@ -1,39 +1,38 @@
 class Solution {
 public:
-    int candy(vector<int>& rat) {
-        int n = rat.size(); 
-        vector<int> cand(n ,1); 
-
-        for( int i =1 ; i < n ; i++)
+    int candy(vector<int>& rating) {
+        int n = rating.size(); 
+        int i =1; 
+        int candy = n ; 
+        while(i < n)
         {
-            int currRate = rat[i]; 
-            int prevRate= rat[i-1];
-            int currCand= cand[i]; 
-            int prevCand= cand[i-1]; 
-            if(currRate > prevRate && currCand<= prevCand)
-            {
-              cand[i]++;
-              i--; 
-            }
-        }
 
-         for( int i = n-2 ; i >=0 ; i--)
-        {
-            int currRate = rat[i]; 
-            int nextRate= rat[i+1];
-            int currCand= cand[i]; 
-            int nextCand= cand[i+1]; 
-            if(currRate > nextRate && currCand<= nextCand)
-            {
-              cand[i]++; 
-              i++;
-            }
-        }
-        
-        int ans=0; 
-        for( int i =0; i < n ; i++)
-           ans+= cand[i];
+             if(rating[i]==rating[i-1])
+             {
+                 i++; 
+                 continue;
+             }
+             int peak=0 ; // inc trend
+             while(rating[i]>rating[i-1])
+             {
+                 peak++; 
+                 i++; 
+                 candy += peak ;
+                 if(i >= n)
+                 return candy ; 
+             }
+             int dip=0 ; //dec trend
 
-        return ans ; 
+             while( i <n && rating[i]<rating[i-1])
+             {
+
+                 dip ++; 
+                 candy+= dip ;
+                 i++;
+             }
+
+             candy-= min(dip,peak);
+        } 
+        return candy ; 
     }
 };
