@@ -1,29 +1,65 @@
 class Solution {
+
+    void formLps( vector<int> & lps, int n,string pat)
+    {
+      lps[0]=0;
+
+      int i=1, length=0; 
+      while( i < n)
+      {
+          if(pat[i]==pat[length])
+          {
+              length++; 
+              lps[i]= length; 
+              i++; 
+          }
+          else{
+              if(length !=0)
+              {
+                  cout<<"g";
+                 length= lps[length-1]; 
+              }
+              else{
+                  lps[i]=0; 
+                  i++; 
+              }
+          }
+      }
+
+      return ;  
+    }
 public:
-    int strStr(string haystack, string needle) {
+    int strStr(string src, string pat) {
         
-        int found  = 0 ; 
-        int index=-1 ; 
-        for( int i=0; i < haystack.length(); i++)
-        {
-            if(haystack[i]==needle[found])
+        int m = pat.size(),n = src.size(), i=0, j =0 ; 
+        vector<int> lps(m); 
+        formLps(lps, m , pat); 
+        // lps bngya 
+  
+        if(src.size()==1 && pat.size()==1 &&pat[0]==src[0])
+        return 0;
+
+
+        while( i<n)
+        { 
+            if(j>=m)
             {
-                if(found==0)
-                index=i ;
-
-                found++; 
-                
-                if(found==needle.length())
-                return index; 
+                return i-m; 
             }
-            else{
-                i -= found ; 
-                found=0 ;
-                
+            if(pat[j]==src[i])
+            {
+                i++; 
+                j++; 
             }
-            
+            else
+            {
+                if(j!=0)
+                j = lps[j-1]; 
+                else 
+                i++; 
+            }
         }
-        return -1; 
 
+        return (j>= m? i-m: -1) ; 
     }
 };
