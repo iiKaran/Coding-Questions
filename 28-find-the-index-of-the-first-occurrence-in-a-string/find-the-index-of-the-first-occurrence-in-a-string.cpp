@@ -35,6 +35,11 @@ public:
         vector<int> lps(m); 
         formLps(lps, m , pat); 
         // lps bngya 
+  
+        if(src.size()==1 && pat.size()==1 &&pat[0]==src[0])
+        return 0;
+
+
         while( i<n)
         { 
             if(j>=m)
