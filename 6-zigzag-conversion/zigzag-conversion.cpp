@@ -1,39 +1,28 @@
 class Solution {
 public:
-    string convert(string s, int numRows) {
-        unordered_map<int , string> mp ; 
+    string convert(const string& s, int numRows) {
+        if(s.empty()) return "";
+        if(s.size() == 1) return s;
+        if(numRows == 1) return s;
 
-        if(numRows ==1)
-        return s ; 
+        string converted;
 
-        for( int row =1; row<=numRows; row++)
-        mp[row]=""; 
+        vector<string> rows(min(numRows, int(s.length())));
+        int currRow = 0;
+        bool goDown = false;
 
-        int currRow=1; 
-        bool down= true; 
-        for(auto ch: s)
-        {
-            mp[currRow]+= ch ; 
-            if(down)
-            {
-            currRow++;
-            if(currRow==numRows)
-              down = false ; 
+        for (char c : s) {
+            rows[currRow] += c;
+            if(currRow == 0 || currRow == numRows - 1) {
+                goDown = !goDown;
             }
-            else 
-            {
-               currRow--; 
-               if(currRow==1)
-               down = true ;
-
-            }
-            
+            currRow += goDown ? 1 : -1;
         }
-        string ans=""; 
-         for( int row =1; row<=numRows; row++)
-         ans += mp[row];
 
+        for(const string& row : rows) {
+            converted += row;
+        }
 
-        return ans ;
+        return converted;
     }
 };
