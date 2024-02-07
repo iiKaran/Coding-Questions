@@ -12,7 +12,6 @@ public:
         string ans = "";
         ans += thousands[num / 1000];
         num = num % 1000;
-        cout << num << ",";
         ans += hundreds[num / 100];
         num = num % 100;
         ans += tens[num / 10];
