@@ -19,7 +19,6 @@ public:
                 i++;
             }
 
-            cout << "ans=" << ans;
         }
         return ans;
     }
