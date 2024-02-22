@@ -1,18 +1,17 @@
 class Solution {
 public:
-    bool canConstruct(string target, string src) {
-
-        unordered_map<char, int> mp;
-
-        for (auto i : src) {
-            mp[i]++;
+    bool canConstruct(string ransomNote, string magazine) {
+        int hash[256] = {0};
+        for(int i = 0; i < magazine.size(); i++) {
+            hash[magazine[i]]++;
         }
-        for (auto i : target) {
-            if (mp[i] == 0 || mp.find(i) == mp.end())
-                return false;
-
-            else
-                mp[i]--;
+        for(int i = 0; i < ransomNote.size(); i++) {
+           hash[ransomNote[i]]--;
+        }
+        for(int i = 0; i < 256; i++) {
+            if(hash[i] < 0) {
+                return false; 
+            }
         }
         return true;
     }
