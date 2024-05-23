@@ -1,23 +1,22 @@
 class Solution {
 public:
     int minSubArrayLen(int target, vector<int>& nums) {
-        int l , r , n,sum,ans ; 
-        l=r=sum=0; 
-        ans=INT_MAX;
-        n = nums.size(); 
-        
-        while(r<n){
-            
-            while(sum<target && r< n){
-                sum += nums[r++]; 
+        int left = 0;
+        int right = 0;
+        int sum = 0;
+        int minSize = nums.size() + 1;
+        while (right < nums.size() && sum<target ) {
+            sum += nums[right];
+
+            if (sum >= target) {
+                while (sum >= target) {
+                    sum -= nums[left];
+                    minSize = min(minSize, right - left + 1);
+                    left++;
+                }
             }
-           
-            // we have ans now try to shift the window
-            while(sum>=target && l<r){
-                sum-= nums[l++]; 
-            }
-                ans= min(ans ,(r-l)); 
+            right += 1;
         }
-        return (ans==n?0:ans+1);
+        return minSize == nums.size() + 1 ? 0 : minSize;
     }
 };
