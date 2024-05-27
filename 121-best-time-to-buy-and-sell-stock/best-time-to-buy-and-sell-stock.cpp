@@ -13,7 +13,7 @@ public:
             else{
                 if(prices[i]<buy){
                 buy=prices[i]; 
-                i--; 
+                // i--; 
                 }
             }
         }
