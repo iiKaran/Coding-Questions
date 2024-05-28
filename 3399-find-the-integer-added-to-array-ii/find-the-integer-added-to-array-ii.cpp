@@ -1,42 +1,30 @@
 class Solution {
 public:
-   bool  check(vector<int>& temp, vector<int>& nums2){
-       int i=0;
-       int j=0;
-       int count=0;
-       while(i<temp.size() && j<nums2.size() ){
-           if(temp[i]==nums2[j]) i++,j++;
-           else{
-               i++;
-               count++;
-           }
-           if(count>2) return false;
-       }
-      return true;
-   }
-    int minimumAddedInteger(vector<int>& nums1, vector<int>& nums2) {
-        sort(nums1.begin(),nums1.end());
-        sort(nums2.begin(),nums2.end());
-        int ans=INT_MAX;
-        unordered_map<int,int>mapping;
-        for(int i=0;i<nums1.size();i++){
-            for(int j=0;j<nums2.size();j++){
-                int diff=nums2[j]-nums1[i];
-                mapping[diff]++;
-            }
+    
+    bool isPossible(vector<int>& A, unordered_map<int, int> freq, int x) {
+        int pending = A.size();
+        for (int i: A) {
+            if (freq.find(i + x) != freq.end()) {
+                freq[i+x]--;
+                if (freq[i+x] == 0) {
+                    freq.erase(i+x);
+                }
+                pending--;
+            } 
         }
-        for(auto i : mapping){
-            vector<int>temp;
-            int diff=i.first;
-            //cout<<diff<<endl;
-            for(int i=0;i<nums1.size();i++){
-                
-                temp.push_back(nums1[i]+diff);
-            }
-            sort(temp.begin(),temp.end());
-            if(check(temp,nums2)) ans=min(ans,diff);
-        }
-        return ans;
+        return pending == 2;
     }
-
+    
+    int minimumAddedInteger(vector<int>& A, vector<int>& B) {
+        unordered_map<int, int> freq;
+        for (int i: B) {
+            freq[i]++;
+        }
+        for (int i = -1001; i <= 1000; i++) {
+            if (isPossible(A, freq, i)) {
+                return i;
+            }
+        }
+        return INT_MIN;
+    }
 };
