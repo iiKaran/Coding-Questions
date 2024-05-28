@@ -40,13 +40,11 @@ public:
                 start = n;   
 
                 start--; 
-                cout<<"elem"<<code[start]<<endl; 
                 sum +=code[start];
             }
             
             int l = 0 ; 
             int r = start; 
-cout<<"sum is "<<r<<endl; 
             while(l< n){
                 ans[l]= sum ; 
                 sum+= code[l++];
