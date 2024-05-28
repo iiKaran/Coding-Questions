@@ -23,7 +23,6 @@ public:
               r= (r+1)%n ; 
               if(l< n){
                 sum-=code[l]; 
-
               }
               sum+= code[r];
            }
@@ -32,21 +31,27 @@ public:
         }
         else{
             vector<int> ans(n,0); 
-            for( int i=0; i < n ; i++){
-                int sum=0; 
-                int start= i ; 
-                int add= 0; 
-                while(add< abs(k)){
-                    if(start==0){
-                        start = n-1 ; 
-                    }
-                    else{
-                        start--; 
-                    }
-                    sum+=code[start];
-                    add++;
-                }
-                ans[i]=sum ;
+            int window=0; 
+            int start = 0;
+            int sum =0;  
+            while(window< abs(k)){
+                window+=1; 
+                if(start==0)
+                start = n;   
+
+                start--; 
+                cout<<"elem"<<code[start]<<endl; 
+                sum +=code[start];
+            }
+            
+            int l = 0 ; 
+            int r = start; 
+cout<<"sum is "<<r<<endl; 
+            while(l< n){
+                ans[l]= sum ; 
+                sum+= code[l++];
+                sum -= code[r]; 
+                r= (r+1)%n; 
             }
             return ans ; 
 
