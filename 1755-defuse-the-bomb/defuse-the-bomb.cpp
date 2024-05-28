@@ -8,13 +8,25 @@ public:
         }
         else if(k > 0){
             vector<int> ans(n,0); 
-            for( int i=0; i < n ; i++){
-                int sum=0; 
-                for( int s=1; s<=k;s++){
-                    sum+=code[(i+s)%n];
-                }
-                ans[i]=sum ;
+            int window=0; 
+            int sum =0; 
+            for( int i =1; window< k && i < n; i = (i+1)%n){
+                sum+=code[i]; 
+                window+=1 ; 
             }
+            // first window sum found
+           int l , r ; 
+           l =0; r= (l+k)%n ; 
+           while(l< n){
+              ans[l]= sum ; 
+              l++; 
+              r= (r+1)%n ; 
+              if(l< n){
+                sum-=code[l]; 
+
+              }
+              sum+= code[r];
+           }
             return ans ; 
 
         }
