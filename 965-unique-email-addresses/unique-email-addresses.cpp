@@ -1,7 +1,7 @@
 class Solution {
 public:
     int numUniqueEmails(vector<string>& emails) {
-  map<string,int> mp ;
+    unordered_map<string,int> mp ;
     int cnt=0; 
     for(auto text: emails){
       string atTheRate = "@";
