@@ -2,7 +2,7 @@ class Solution {
     int sumFind(vector<int> &nums, int n , int div){
         int result =0; 
         for( int i=0; i <n;i++){
-            int division_result= static_cast<int>(std::ceil(static_cast<double>(nums[i]) / div)); 
+            int division_result= int(ceil(double(nums[i]) / double(div))); 
             result+= division_result ;
         }
         return result;
