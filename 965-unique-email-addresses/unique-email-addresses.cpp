@@ -26,15 +26,15 @@ public:
             name= modified;
         }
         string final = name+domain; 
-        mp[final]+=1 ; 
-    }
-    }
-    
-    for(auto i : mp){
-
-         
+        
+        if(mp[final]>=1){
+            mp[final]+=1 ; 
+        }
+        else{
             cnt+=1 ; 
-         
+            mp[final]=1 ; 
+        }
+    }
     }
     return cnt ;
     }
