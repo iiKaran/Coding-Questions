@@ -13,18 +13,20 @@ public:
         string domain = text.substr(position);
         
         // work on the name
-        int dotPos = name.find("."); 
-        while(dotPos != string::npos){
-            name = name.erase(dotPos,1);
-            dotPos = name.find(".");
-        }
-        // remove all the dots
         // ignore string after add 
         int plusPos = name.find("+"); 
         if(plusPos != string::npos){
             string modified = name.substr(0,plusPos);
             name= modified;
         }
+        // remove all the dots
+        int dotPos = name.find("."); 
+        while(dotPos != string::npos){
+            name = name.erase(dotPos,1);
+            dotPos = name.find(".");
+        }
+        
+        
         string final = name+domain; 
         
         if(mp[final]>=1){
