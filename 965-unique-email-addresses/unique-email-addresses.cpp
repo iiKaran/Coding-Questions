@@ -26,7 +26,6 @@ public:
             name= modified;
         }
         string final = name+domain; 
-        cout<<final<<endl;
         mp[final]+=1 ; 
     }
     }
