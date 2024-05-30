@@ -15,7 +15,6 @@ public:
             {
                 nextGreat[i]=-1 ; 
                   st.push(nums2[i]);
-                continue ;
             }
             while(!st.empty() && st.top()<=nums2[i]){
             st.pop(); 
@@ -27,21 +26,12 @@ public:
             else{
                 nextGreat[i]= st.top();
             }
-
-            st.push(nums2[i]);
-        }
-
-         for(int i =0; i < nums2.size(); i++){
-            cout<< nextGreat[i];
-         }
-         cout<<endl; 
-        // now keep only that in n1 
-        
-        for(int i =0; i < nums2.size(); i++){
             if(mp.find(nums2[i])!= mp.end()){
                 ans[mp[nums2[i]]]= nextGreat[i];
             }
+            st.push(nums2[i]);
         }
+        // now keep only that in n1 
         return ans ; 
         
     }
