@@ -1,8 +1,7 @@
-#include<bits/stdc++.h>
 class Solution {
 public:
-    void nextPermutation(vector<int>& arr) {
-       next_permutation(arr.begin(), arr.end()); 
-       return ; 
+    void nextPermutation(vector<int>& nums) {
+        next_permutation(nums.begin(), nums.end()); 
+        
     }
 };
