@@ -1,24 +1,15 @@
 class Solution {
 public:
-    bool rotateString(string s, string goal) {
-        
-        if(s== goal) return 1 ; 
-        reverse(s.begin(),s.end()); 
-        string t = s; 
-        
-        for( int i =0; i <t.length()-1;i++){
-            if(t[i]==goal[0])
-            {
-                // now reverse
-                string rev = t ; 
-
-                reverse(rev.begin(),rev.begin()+i+1); 
-                reverse(rev.begin()+i+1,rev.end()); 
-                cout<<"rev is "<<rev<<" & goal is "<<goal<<endl; 
-                if(rev==goal)
-                return true; 
+    bool rotateString(string s,string goal){
+        if(s.size()!=goal.size()){
+            return false;
+        }
+        for(int i=0;i<s.size();i++){
+            s=s.substr(1,s.size())+s.substr(0,1);
+            if(s==goal){
+                return true;
             }
         }
-        return false ;
+        return false;
     }
 };
