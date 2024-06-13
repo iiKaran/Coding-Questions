@@ -6,15 +6,15 @@ class Solution {
         ans.push_back(temp);
         return;
     }
-    if(open<n)
-    solve(open+1,close,n,temp+'(',ans);
-    if(close<open)
-    solve(open,close+1,n,temp+')',ans);
+    if(open>0)
+    solve(open-1,close,n,temp+'(',ans);
+    if(close>open)
+    solve(open,close-1,n,temp+')',ans);
     }
 public:
     vector<string> generateParenthesis(int n) {
         vector<string> ans ;
-        solve(0,0,n,"",ans);
+        solve(n,n,n,"",ans);
         return ans ; 
     }
 };
