@@ -1,28 +1,24 @@
 class Solution {
 public:
-    string convert(const string& s, int numRows) {
-        if(s.empty()) return "";
-        if(s.size() == 1) return s;
-        if(numRows == 1) return s;
-
-        string converted;
-
-        vector<string> rows(min(numRows, int(s.length())));
-        int currRow = 0;
-        bool goDown = false;
-
-        for (char c : s) {
-            rows[currRow] += c;
-            if(currRow == 0 || currRow == numRows - 1) {
-                goDown = !goDown;
+    string convert(string s, int numRows) {
+        vector<string> v(numRows, "");
+        int i =0;
+        int n = s.length();
+        while(i<n){
+            //for up to down traverse
+            for(int j =0; j<numRows && i<n; j++ ){
+                v[j].push_back(s[i++]);
             }
-            currRow += goDown ? 1 : -1;
+            //down to up traverse
+            for(int j =numRows-2; j>=1 && i<n; j--){
+                v[j].push_back(s[i++]);
+            }
         }
-
-        for(const string& row : rows) {
-            converted += row;
+        //store row wise
+        string res ="";
+        for(auto i : v){
+            res+=i;
         }
-
-        return converted;
+        return res;
     }
 };
