@@ -4,7 +4,7 @@ class Solution {
         {
             return ; 
         }
-        grid[row][col]='0'; 
+        grid[row][col]='*'; 
         dfs(row+1,col, grid); 
         dfs(row-1,col,grid); 
         dfs(row , col+1, grid); 
