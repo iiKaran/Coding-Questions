@@ -5,10 +5,10 @@ public:
         int elders = 0 ; 
         for( auto person : details){
             int age =0 ; 
-            age = char(person[11])-'0';
-            age = age*10 + char(person[12])-'0';
-
-            if(age > 60)
+            int tens = char(person[11])-'0';
+            int one= char(person[12])-'0';
+             
+            if(tens> 6 || (tens==6 && one > 0))
             elders+=1 ; 
         }
         // cout<<endl; 
