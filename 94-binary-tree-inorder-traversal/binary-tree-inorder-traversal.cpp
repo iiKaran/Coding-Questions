@@ -21,9 +21,8 @@ public:
         if(root== NULL)
         return order ; 
 
-        st.push(root); 
         TreeNode * curr = root ; 
-        while(!st.empty()){
+        while( curr != nullptr || !st.empty()){
             while(curr != nullptr){
             st.push(curr); 
             curr = curr->left ; 
@@ -36,8 +35,7 @@ public:
                 st.pop();
                 curr = curr->right ; 
         }
-        order.pop_back(); 
-        
+    
         return order ; 
     }
 };
