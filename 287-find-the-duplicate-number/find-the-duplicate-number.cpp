@@ -1,19 +1,13 @@
+#include<bits/stdc++.h> 
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        int f, s;
-        f=s=0; 
-        
-        do{
-            f=nums[nums[f]]; 
-            s=nums[s];
-        }while(f!=s);
-
-        s=0;
-        while(f!=s){
-            f=nums[f]; 
-            s= nums[s];
+        sort(nums.begin(), nums.end()); 
+        for( int i =1 ; i < nums.size(); i++)
+        {
+            if(nums[i]== nums[i-1])
+            return nums[i];
         }
-        return s;
+        return -1 ; 
     }
 };
